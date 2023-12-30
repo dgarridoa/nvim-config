@@ -116,7 +116,7 @@ local plugins = {
   },
   -- make non-LSP sources to hook into its LSP client
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     ft = { "lua", "python" },
     opts = function()
       return require "configs.null-ls"
