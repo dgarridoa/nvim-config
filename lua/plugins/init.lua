@@ -1,5 +1,5 @@
 local plugins = {
-   -- asynchronous programming using coroutines
+  -- asynchronous programming using coroutines
   {
     "nvim-lua/plenary.nvim",
   },
@@ -172,6 +172,7 @@ local plugins = {
         "hrsh7th/cmp-cmdline",
         "jc-doyle/cmp-pandoc-references",
         "rcarriga/cmp-dap",
+        "zbirenbaum/copilot-cmp",
       },
     },
     opts = function()
@@ -207,6 +208,8 @@ local plugins = {
           { name = "dap" },
         },
       })
+      -- to enable popupmenu-completion for copilot
+      require("copilot_cmp").setup()
     end,
   },
   -- to comment code

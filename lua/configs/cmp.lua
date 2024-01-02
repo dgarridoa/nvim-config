@@ -65,6 +65,7 @@ local options = {
     { name = "path" },
     { name = "cmdline" },
     { name = "pandoc_references" },
+    { name = "copilot" },
   },
 }
 
