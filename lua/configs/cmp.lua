@@ -2,11 +2,8 @@ local cmp = require "cmp"
 local border = require("utils").border
 
 local options = {
-  enabled = function()
-    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
-  end,
   completion = {
-    completeopt = "menu,menuone",
+    completeopt = "menuone,noselect,noinsert",
   },
   window = {
     completion = {
@@ -33,7 +30,7 @@ local options = {
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
+      select = false,
     },
     -- ["<Tab>"] = cmp.mapping(function(fallback)
     --   if cmp.visible() then
