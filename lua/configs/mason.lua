@@ -8,7 +8,7 @@ local options = {
     "pyright",
     "mypy",
     "ruff-lsp",
-    "pylsp",
+    "python-lsp-server",
     "flake8",
     "black",
     "isort",
