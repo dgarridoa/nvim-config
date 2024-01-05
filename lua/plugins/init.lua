@@ -289,17 +289,18 @@ local plugins = {
       telescope.setup(opts)
 
       -- load extensions
-      --      for _, ext in ipairs(opts.extensions_list) do
-      --        telescope.load_extension(ext)
-      --      end
+      for _, ext in ipairs(opts.extensions_list) do
+        telescope.load_extension(ext)
+      end
     end,
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    init = function()
-      require("telescope").load_extension "file_browser"
-    end,
+  },
+  {
+    "camgraff/telescope-tmux.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "norcalli/nvim-terminal.lua" },
   },
   -- only load whichkey after all the gui
   {

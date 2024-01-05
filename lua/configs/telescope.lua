@@ -48,8 +48,7 @@ local options = {
       n = { ["q"] = require("telescope.actions").close },
     },
   },
-
-  extensions_list = { "themes", "terms", "fzf" },
+  extensions_list = { "fzf", "file_browser", "tmux" },
   extensions = {
     fzf = {
       fuzzy = true,
