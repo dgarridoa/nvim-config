@@ -42,6 +42,8 @@ M.general = {
     ["<C-RIGHT>"] = { ":vertical resize +2<cr>", "Resize from left to right" },
     -- reload config
     ["<leader>lc"] = { ":luafile ~/.config/nvim/init.lua<cr>", "Reload config" },
+    -- replace text
+    ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace current word" },
   },
   v = {
     ["J"] = { ":m '>+1<CR>gv=gv", "Move selected text one line down" },
