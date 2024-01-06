@@ -43,6 +43,10 @@ M.general = {
     -- reload config
     ["<leader>lc"] = { ":luafile ~/.config/nvim/init.lua<cr>", "Reload config" },
   },
+  v = {
+    ["J"] = { ":m '>+1<CR>gv=gv", "Move selected text one line down" },
+    ["K"] = { ":m '<-2<CR>gv=gv", "Move selected text one line up" },
+  },
   t = {
     ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
     ["<Esc>"] = { "<C-\\><C-n>", "Exit terminal mode" }, -- CTRL-[]
