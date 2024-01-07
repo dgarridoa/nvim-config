@@ -9,6 +9,7 @@ return merge_tb(
   require "mappings.gitsigns",
   require "mappings.harpoon",
   require "mappings.lspconfig",
+  require "mappings.neotest",
   require "mappings.nvimtree",
   require "mappings.oil",
   require "mappings.telescope",
