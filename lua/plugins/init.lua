@@ -179,8 +179,10 @@ local plugins = {
       return require "configs.cmp"
     end,
     config = function(_, opts)
-      -- completion for search mode
       local cmp = require "cmp"
+      -- setup config
+      cmp.setup(opts)
+      -- completion for search mode
       cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
@@ -196,7 +198,6 @@ local plugins = {
           { name = "cmdline" },
         }),
       })
-      cmp.setup(opts)
       -- completion for debug mode
       cmp.setup {
         enabled = function()
