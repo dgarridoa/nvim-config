@@ -476,6 +476,17 @@ local plugins = {
       require("nvim-tmux-navigation").setup {}
     end,
   },
+  -- undo tree
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    init = function()
+      require("utils").load_mappings "undotree"
+    end,
+    config = function()
+      require("configs.undotree").setup()
+    end,
+  },
 }
 
 require("lazy").setup(plugins, require "configs.lazy_nvim")

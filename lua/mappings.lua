@@ -13,5 +13,6 @@ return merge_tb(
   require "mappings.nvimtree",
   require "mappings.oil",
   require "mappings.telescope",
+  require "mappings.undotree",
   require "mappings.whichkey"
 )

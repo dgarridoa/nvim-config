@@ -9,6 +9,9 @@ opt.showmode = false
 opt.clipboard = "unnamedplus"
 opt.cursorline = false
 
+-- enable persistent undo
+g.undofile = true
+
 -- Indenting
 opt.expandtab = true
 opt.shiftwidth = 2
