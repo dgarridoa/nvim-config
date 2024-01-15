@@ -126,4 +126,22 @@ M.border = function(hl_name)
   }
 end
 
+M.scandir = function(directory)
+  local file_names = {}
+  local pfile = io.popen("find '" .. directory .. "' -maxdepth 1 -type f")
+
+  if not pfile then
+    error("Failed to open directory: " .. directory)
+  end
+  for file_path in pfile:lines() do
+    local file_name = file_path:sub(#directory + 1)
+    if file_name ~= "" then
+      table.insert(file_names, file_name)
+    end
+  end
+
+  pfile:close()
+  return file_names
+end
+
 return M
