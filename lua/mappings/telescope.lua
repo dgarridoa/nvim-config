@@ -25,15 +25,10 @@ M.telescope = {
       "Open definition into vertical right split window",
     },
     -- git
-    ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
-    ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
-    ["<leader>gb"] = { "<cmd> Telescope git_branches <cr>" },
-    ["<leader>gs"] = { "<cmd> Telescope git_status <cr>" },
-    ["<leader>gc"] = { "<cmd> Telescope git_commits <cr>" },
-    ["<leader>gf"] = { "<cmd> Telescope git_files <cr>" },
-    ["<leader>gd"] = { "<cmd> Git diff <cr>" },
-    ["<leader>glg"] = { "<cmd> Git log <cr>" },
-    ["<leader>gl"] = { "<cmd> Git log --oneline --decorate --all --graph <cr>" },
+    ["<leader>gb"] = { "<cmd> Telescope git_branches <cr>", "Git branches, select to checkout branch" },
+    ["<leader>gs"] = { "<cmd> Telescope git_status <cr>", "Git status, select to jump to file" },
+    ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits, select to checkout commit" },
+    ["<leader>gf"] = { "<cmd> Telescope git_files <cr>", "Display files tracked by git" },
     -- pick a hidden term
     ["<leader>ht"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
     -- pick marks, type m followd by a letter to mark a line
