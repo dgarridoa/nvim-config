@@ -2,7 +2,6 @@ local border = require "utils".border
 
 return {
   defaults = { lazy = true },
-  -- install = { colorscheme = { "nvchad" } },
 
   ui = {
     border = border "CmpBorder",

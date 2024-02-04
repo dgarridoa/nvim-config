@@ -153,10 +153,10 @@ else
           flake8 = {
             enabled = true,
             ignore = { "E203", "W503" },
-            maxLineLenght = 79,
+            max_line_length = 79,
           },
-          isort = { enabled = true },
-          black = { enabled = true, line_lenght = 79 },
+          isort = { enabled = true, profile = "black", multi_line_output = 3, line_length = 79 },
+          black = { enabled = true, line_length = 79 },
         },
       },
     },
