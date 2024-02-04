@@ -42,9 +42,9 @@ M.telescope = {
     -- :delmarks! to delete all marks
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
     -- tmux
-    ["<leader>tp"] = {"<cmd> Telescope tmux pane_contents <cr>", "Tmux pane content"},
-    ["<leader>tw"] = {"<cmd> Telescope tmux windows <cr>", "Tmux windows"},
-    ["<leader>ts"] = {"<cmd> Telescope tmux sessions <cr>", "Tmux sessions"},
+    ["<leader>tp"] = { "<cmd> Telescope tmux pane_contents <cr>", "Tmux pane content" },
+    ["<leader>tw"] = { "<cmd> Telescope tmux windows <cr>", "Tmux windows" },
+    ["<leader>ts"] = { "<cmd> Telescope tmux sessions <cr>", "Tmux sessions" },
   },
 }
 

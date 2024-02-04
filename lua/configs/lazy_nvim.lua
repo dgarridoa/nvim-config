@@ -1,4 +1,4 @@
-local border = require "utils".border
+local border = require("utils").border
 
 return {
   defaults = { lazy = true },

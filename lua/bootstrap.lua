@@ -22,7 +22,7 @@ M.lazy = function(install_path)
   require "plugins"
 
   -- mason packages
-  vim.cmd("MasonInstallAll")
+  vim.cmd "MasonInstallAll"
 end
 
 return M

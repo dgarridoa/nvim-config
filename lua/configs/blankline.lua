@@ -1,15 +1,15 @@
 local options = {
-  debounce=200,
+  debounce = 200,
   indent = {
     char = "|",
-    highlight = {"IblIndent"},
+    highlight = { "IblIndent" },
     smart_indent_cap = true,
     priority = 1,
     repeat_linebreak = true,
   },
   whitespace = {
     highlight = "IblWhitespace",
-    remove_blankline_trail = true
+    remove_blankline_trail = true,
   },
   scope = {
     enabled = false,
@@ -36,7 +36,7 @@ local options = {
       "quickfix",
       "prompt",
     },
-  }
+  },
 }
 
 return options
