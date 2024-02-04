@@ -44,6 +44,10 @@ M.general = {
     ["<leader>lc"] = { ":luafile ~/.config/nvim/init.lua<cr>", "Reload config" },
     -- replace text
     ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace current word" },
+    ["<leader>co"] = { ":copen<cr>", "Open the quickfix list window" },
+    ["<leader>cc"] = { ":cclose<cr>", "Close the quickfix list window" },
+    ["<leader>cn"] = { ":cn<cr>", "Go to the next item on the list" },
+    ["<leader>cp"] = { ":cp<cr>", "Go to the previous item on the list" },
   },
   v = {
     ["J"] = { ":m '>+1<CR>gv=gv", "Move selected text one line down" },
