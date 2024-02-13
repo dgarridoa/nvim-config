@@ -131,7 +131,8 @@ if check_ruff_on_pyproject() then
   lspconfig.ruff_lsp.setup {
     before_init = function(_, config)
       config.path = M.get_ruff_path(config.root_dir)
-      config.lint.args = { "--config=" .. path.join(config.root_dir, "ruff.toml") }
+      config.format = { "--config=" .. path.join(config.root_dir, "pyproject.toml") }
+      config.lint = { "--config=" .. path.join(config.root_dir, "pyproject.toml") }
     end,
     on_attach = ruff_on_attach,
     filetype = { "python" },
@@ -139,7 +140,7 @@ if check_ruff_on_pyproject() then
 else
   lspconfig.pylsp.setup {
     before_init = function(_, config)
-      config.settings.python.pythonPath = M.get_python_path(config.root_dir)
+      config.path = M.get_python_path(config.root_dir)
     end,
     on_attach = M.on_attach,
     capabilities = M.capabilities,
