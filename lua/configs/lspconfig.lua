@@ -105,19 +105,20 @@ local ruff_on_attach = function(client, bufnr)
   end, bufopts)
 end
 
-local check_ruff_on_pyproject = function()
+local check_package_on_pyproject = function(package)
   local match = vim.fn.glob(path.join(vim.fn.getcwd(), "pyproject.toml"))
   if match ~= "" then
     local f = assert(io.open(match, "r"))
     local content = f:read "*all"
     f:close()
-    if string.find(content, "ruff") then
+    if string.find(content, package) then
       return true
     end
   end
   return false
 end
 
+-- python type checker
 lspconfig.pyright.setup {
   before_init = function(_, config)
     config.settings.python.pythonPath = M.get_python_path(config.root_dir)
@@ -127,7 +128,8 @@ lspconfig.pyright.setup {
   filetype = { "python" },
 }
 
-if check_ruff_on_pyproject() then
+-- python linter
+if check_package_on_pyproject "ruff" then
   lspconfig.ruff_lsp.setup {
     before_init = function(_, config)
       config.path = M.get_ruff_path(config.root_dir)
