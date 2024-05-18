@@ -14,6 +14,7 @@ local options = {
     "isort",
     "terraform-ls",
     "texlab",
+    "gopls",
   },
   PATH = "skip",
   ui = {

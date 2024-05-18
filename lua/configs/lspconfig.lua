@@ -172,4 +172,10 @@ lspconfig.terraformls.setup {
   filetype = { "terraform" },
 }
 
+lspconfig.gopls.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+  filetype = { "go" },
+}
+
 return M
