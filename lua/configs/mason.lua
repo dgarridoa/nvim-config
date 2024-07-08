@@ -4,6 +4,7 @@ local options = {
   -- not an option from mason.nvim
   ensure_installed = {
     "lua-language-server",
+    "stylua",
     "debugpy",
     "pyright",
     "mypy",
