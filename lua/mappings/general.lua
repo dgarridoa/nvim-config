@@ -40,8 +40,6 @@ M.general = {
     ["<C-DOWN>"] = { ":resize +2<cr>", "Resize from up to down" },
     ["<C-LEFT>"] = { ":vertical resize -2<cr>", "Resize from right to left" },
     ["<C-RIGHT>"] = { ":vertical resize +2<cr>", "Resize from left to right" },
-    -- reload config
-    ["<leader>lc"] = { ":luafile ~/.config/nvim/init.lua<cr>", "Reload config" },
     -- replace text
     ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace current word" },
     ["<leader>co"] = { ":copen<cr>", "Open the quickfix list window" },
