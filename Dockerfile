@@ -33,7 +33,7 @@ RUN rm -rf /usr/local/go && \
 RUN apt install -y zlib1g-dev libbz2-dev libncurses5-dev libncursesw5-dev libffi-dev libreadline-dev libssl-dev libsqlite3-dev liblzma-dev
 RUN curl https://pyenv.run | bash
 RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc && \
-    echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc && \
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc && \
     echo 'eval "$(pyenv init -)"' >> ~/.bashrc && \
     . ~/.bashrc && \
     pyenv install 3.10.14 && \
