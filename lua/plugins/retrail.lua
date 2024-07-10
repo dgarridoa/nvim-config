@@ -1,6 +1,7 @@
 return {
   "kaplanz/nvim-retrail",
   init = function()
-    require("retrail").setup {}
+    local opts = require "configs.retrail"
+    require("retrail").setup(opts)
   end,
 }
