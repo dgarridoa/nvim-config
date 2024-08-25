@@ -13,7 +13,9 @@ return {
         n = 1,
       },
     }
-    require "configs.chatgpt"
+    local wk = require "which-key"
+    local options = require "configs.chatgpt"
+    wk.add(options)
   end,
   dependencies = {
     "MunifTanjim/nui.nvim",
