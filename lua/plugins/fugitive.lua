@@ -1,0 +1,28 @@
+return {
+  "tpope/vim-fugitive",
+  cmd = {
+    "G",
+    "Git",
+    "Gsplit",
+    "Gdiffsplit",
+    "Ghdiffsplit",
+    "Gedit",
+    "Gread",
+    "Gwrite",
+    "Ggrep",
+    "GMove",
+    "GDelete",
+    "GBrowse",
+  },
+  keys = {
+    { "<leader>gbl", "<cmd>Git blame<cr>", desc = "Display git blame" },
+    { "<leader>gdi", "<cmd>Git diff<cr>", desc = "Display git diff" },
+    { "<leader>gds", "<cmd>Ghdiffsplit<cr>", desc = "Display git diff with horizontal split" },
+    { "<leader>gdd", "<cmd>Gdiffsplit<cr>", desc = "Display git diff with vertical split" },
+    { "<leader>gdt", "<cmd>Git difftool<cr>", desc = "Display git diff into quickfix list" },
+    { "<leader>git", "<cmd>Git<cr>", desc = "Open summary git window" },
+    { "<leader>glg", "<cmd>Git log<cr>", desc = "Display git log" },
+    { "<leader>gl", "<cmd>Git log --oneline --decorate --all --graph<cr>", desc = "Display one line git log" },
+    { "<leader>gmt", "<cmd>Git mergetool<cr>", desc = "Display merge conflicts into quickfix list" },
+  },
+}
