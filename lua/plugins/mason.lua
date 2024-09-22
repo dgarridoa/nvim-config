@@ -1,9 +1,30 @@
 return {
   "williamboman/mason.nvim",
-  cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
-  opts = function()
-    return require "configs.mason"
-  end,
+  opts = {
+    ensure_installed = {
+      "lua-language-server",
+      "stylua",
+      "debugpy",
+      "pyright",
+      "mypy",
+      "ruff-lsp",
+      "python-lsp-server",
+      "flake8",
+      "black",
+      "isort",
+      "terraform-ls",
+      "texlab",
+      "gopls",
+    },
+    ui = {
+      border = require("utils").border "CmpBorder",
+      icons = {
+        package_pending = " ",
+        package_installed = "󰄳 ",
+        package_uninstalled = " 󰚌",
+      },
+    },
+  },
   config = function(_, opts)
     require("mason").setup(opts)
 

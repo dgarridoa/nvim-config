@@ -2,9 +2,29 @@ return {
   -- debug adapter protocol (dap) client
   {
     "mfussenegger/nvim-dap",
-    config = function()
-      require("utils").load_mappings "dap"
-    end,
+    keys = {
+      {
+        "<leader>db",
+        function()
+          vim.cmd "DapToggleBreakpoint"
+        end,
+        desc = "Create or remove debug breakpoint",
+      },
+      {
+        "<leader>dc",
+        function()
+          vim.cmd "DapContinue"
+        end,
+        desc = "Start debug session or jump to next breakpoint",
+      },
+      {
+        "<leader>dx",
+        function()
+          vim.cmd "DapTerminate"
+        end,
+        desc = "Terminate debug session",
+      },
+    },
   },
   -- nvim-dap UI
   {
@@ -30,14 +50,14 @@ return {
     "mfussenegger/nvim-dap-python",
     ft = { "python" },
     dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
+    keys = { { "<leader>dt", desc = "Run test in debug" } },
     config = function()
-      -- might have to activate the project environment before
-      -- with virtual environment selector or poetry shell
-      -- check with :VenvSelectCurrent
-      local path = "~/.pyenv/versions/debugpy/bin/python"
-      require("dap-python").setup(path)
-      require("dap-python").test_runner = "pytest"
-      require("utils").load_mappings "dap_python"
+      local dp = require "dap-python"
+      dp.setup()
+      dp.test_runner = "pytest"
+      vim.keymap.set("n", "<leader>dt", function()
+        require("dap-python").test_method()
+      end, { desc = "Run test in debug session" })
     end,
   },
 }
