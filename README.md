@@ -52,6 +52,7 @@ This configuration uses [lazy](https://github.com/folke/lazy.nvim) as plugin man
 - `plenary`: Lua module for asynchronous programming using coroutines. Used as dependency in other plugins.
 - `project`: Set nvim cwd to the inferred project root directory (ex: .git/).
 - `retrail`: To identify and remove trailing whitespaces.
+- `sqls`: SQL LSP.
 - `telescope`: Fuzzy finder.
 - `terminal`: To highlight log file with terminal colorscheme.
 - `tmux_navigation`: To navigate seamlessly between nvim and tmux.

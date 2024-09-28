@@ -12,6 +12,7 @@ return {
       "pyright",
       "python-lsp-server",
       "ruff-lsp",
+      "sqls",
       "stylua",
       "terraform-ls",
       "texlab",
