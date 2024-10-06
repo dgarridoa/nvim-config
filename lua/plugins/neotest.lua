@@ -4,56 +4,56 @@ local keymaps = {
     function()
       require("neotest").run.run()
     end,
-    { desc = "Run the nearest test" },
+    desc = "Run the nearest test",
   },
   {
     "<leader>rd",
     function()
       require("neotest").run.run { strategy = "dap" }
     end,
-    { desc = "Run the nearest test in debug mode" },
+    desc = "Run the nearest test in debug mode",
   },
   {
     "<leader>rl",
     function()
       require("neotest").run.run_last()
     end,
-    { desc = "Run the last test" },
+    desc = "Run the last test",
   },
   {
     "<leader>rs",
     function()
       require("neotest").run.stop()
     end,
-    { desc = "Stop the nearest test" },
+    desc = "Stop the nearest test",
   },
   {
     "<leader>rf",
     function()
       require("neotest").run.run(vim.fn.expand "%")
     end,
-    { desc = "Run all test in the current file" },
+    desc = "Run all test in the current file",
   },
   {
     "<leader>ot",
     function()
       require("neotest").output.open { { enter = true } }
     end,
-    { desc = "Open the output of a test result" },
+    desc = "Open the output of a test result",
   },
   {
     "<leader>op",
     function()
       require("neotest").output_panel.open()
     end,
-    { desc = "Open the output panel" },
+    desc = "Open the output panel",
   },
   {
     "<leader>tt",
     function()
       require("neotest").summary.toggle()
     end,
-    { desc = "Toggle test summary window" },
+    desc = "Toggle test summary window",
   },
 }
 local options = function()
@@ -65,7 +65,7 @@ local options = function()
         -- dap = { justMyCode = false },
         -- Command line arguments for runner
         -- Can also be a function to return dynamic values
-        args = { "--log-level", "DEBUG" },
+        args = { "--log-level", "DEBUG", "-vv", "-s" },
         -- Runner to use. Will use pytest if available by default.
         -- Can be a function to return dynamic value.
         runner = "pytest",
