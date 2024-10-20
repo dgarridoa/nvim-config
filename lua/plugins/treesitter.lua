@@ -4,8 +4,10 @@ return {
   build = ":TSUpdate",
   opts = {
     ensure_installed = {
+      "bash",
       "c",
       "css",
+      "dockerfile",
       "go",
       "html",
       "javascript",
