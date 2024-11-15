@@ -16,8 +16,6 @@ Inside the container, Neovim must be started four times using the command `nvim`
 
 To enable Copilot, open a code file with `nvim` and in command mode execute `:Copilot auth`. This will prompt a code that you have to copy in the browser at the provided URL.
 
-To enable ChatGPT set the environment variable `OPENAI_API_KEY`.
-
 Start a Docker container that maintains its previous state with an interactive bash shell.
 
 ```sh
@@ -29,11 +27,10 @@ docker exec -it nvim bash
 
 This configuration uses [lazy](https://github.com/folke/lazy.nvim) as plugin manager. In the `lua/plugins` directory, you will find the plugin modules. A brief explanation of its contents is provided below:
 
+- `avante`: ai driven code suggestion.
 - `bufferline`: bufffer line (with tabpage integration).
-- `chatgpt`: ChatGPT integration through OpenAI ChatGPT API.
 - `cmp`: Code completion.
 - `comment`: Commenting.
-- `copilot`: Github Copilot.
 - `dap`: Debuger Adapter Protocol.
 - `dashboard`: Pretty dashboard on start screen.
 - `devicons`: Web icons.
