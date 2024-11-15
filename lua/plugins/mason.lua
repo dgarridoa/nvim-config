@@ -11,7 +11,7 @@ return {
       "mypy",
       "pyright",
       "python-lsp-server",
-      "ruff-lsp",
+      "ruff",
       "sqls",
       "stylua",
       "terraform-ls",

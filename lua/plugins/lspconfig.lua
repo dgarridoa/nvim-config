@@ -377,7 +377,7 @@ return {
       }
     end
     if is_ruff then
-      lspconfig.ruff_lsp.setup {
+      lspconfig.ruff.setup {
         before_init = function(_, config)
           local path = lspconfig.util.path
           config.path = get_ruff_path(config.root_dir)
