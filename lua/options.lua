@@ -7,6 +7,20 @@ o.laststatus = 3 -- global statusline
 o.showmode = false
 
 o.clipboard = "unnamedplus"
+if vim.fn.has "android" == 1 then
+  g.clipboard = {
+    name = "termux-clipboard",
+    copy = {
+      ["+"] = "termux-clipboard-set",
+      ["*"] = "termux-clipboard-set",
+    },
+    paste = {
+      ["+"] = "termux-clipboard-get",
+      ["*"] = "termux-clipboard-get",
+    },
+    cache_enabled = true,
+  }
+end
 o.cursorline = false
 
 -- enable persistent undo
