@@ -274,7 +274,7 @@ return {
     lspconfig.lua_ls.setup {
       on_attach = on_attach,
       capabilities = capabilities,
-      filetype = { "lua" },
+      filetypes = { "lua" },
       on_init = function(client)
         if client.workspace_folders then
           local path = client.workspace_folders[1].name
@@ -373,7 +373,7 @@ return {
         end,
         on_attach = on_attach,
         capabilities = capabilities,
-        filetype = { "python" },
+        filetypes = { "python" },
       }
     end
     if is_ruff then
@@ -394,7 +394,7 @@ return {
             vim.api.nvim_command("!" .. client.config.path .. " check " .. buf_path .. " --fix")
           end, bufopts)
         end,
-        filetype = { "python" },
+        filetypes = { "python" },
       }
     end
     if not is_pyright and not is_ruff then
@@ -404,7 +404,7 @@ return {
         end,
         on_attach = on_attach,
         capabilities = capabilities,
-        filetype = { "python" },
+        filetypes = { "python" },
         cmd = { "pylsp" },
         settings = {
           pylsp = {
@@ -428,13 +428,13 @@ return {
     lspconfig.terraformls.setup {
       on_attach = on_attach,
       capabilities = capabilities,
-      filetype = { "terraform" },
+      filetypes = { "terraform" },
     }
 
     lspconfig.gopls.setup {
       on_attach = on_attach,
       capabilities = capabilities,
-      filetype = { "go" },
+      filetypes = { "go" },
     }
 
     lspconfig.sqls.setup {
