@@ -185,8 +185,10 @@ return {
       },
     }
 
-    local get_path = function(workspace, package)
+    local get_path = function(package)
       local path = lspconfig.util.path
+      local workspace = vim.lsp.buf.list_workspace_folders()[1]
+
       -- Use activated virtualenv
       if vim.env.VIRTUAL_ENV then
         return path.join(vim.env.VIRTUAL_ENV, "bin", package)
@@ -210,16 +212,12 @@ return {
       return system_path
     end
 
-    local get_python_path = function(workspace)
-      local path = get_path(workspace, "python")
+    local get_python_path = function()
+      local path = get_path "python"
       if path == "" then
-        path = get_path(workspace, "python3")
+        path = get_path "python3"
       end
       return path
-    end
-
-    local get_ruff_path = function(workspace)
-      return get_path(workspace, "ruff")
     end
 
     ---@param package string
@@ -242,32 +240,24 @@ return {
     local is_ruff = is_package_in_pyproject "ruff"
 
     if is_pyright then
-      -- python type checker
       lspconfig.pyright.setup {
-        before_init = function(_, config)
-          config.settings.python.pythonPath = get_python_path(config.root_dir)
-        end,
         on_attach = on_attach,
         capabilities = capabilities,
+        cmd = { get_path "pyright-langserver", "--stdio" },
         filetypes = { "python" },
       }
     end
     if is_ruff then
       lspconfig.ruff.setup {
-        before_init = function(_, config)
-          local path = lspconfig.util.path
-          config.path = get_ruff_path(config.root_dir)
-          config.format = { "--config=" .. path.join(config.root_dir, "pyproject.toml") }
-          config.lint = { "--config=" .. path.join(config.root_dir, "pyproject.toml") }
-        end,
+        cmd = { get_path "ruff", "server" },
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
           client.server_capabilities.hoverProvider = false
           local bufopts = { noremap = true, silent = true, buffer = bufnr }
           vim.keymap.set("n", "<leader>fm", function()
             local buf_path = vim.api.nvim_buf_get_name(bufnr)
-            vim.api.nvim_command("!" .. client.config.path .. " format " .. buf_path)
-            vim.api.nvim_command("!" .. client.config.path .. " check " .. buf_path .. " --fix")
+            vim.api.nvim_command("!" .. get_path "ruff" .. " format " .. buf_path)
+            vim.api.nvim_command("!" .. get_path "ruff" .. " check " .. buf_path .. " --fix")
           end, bufopts)
         end,
         filetypes = { "python" },
@@ -275,9 +265,6 @@ return {
     end
     if not is_pyright and not is_ruff then
       lspconfig.pylsp.setup {
-        before_init = function(_, config)
-          config.path = get_python_path(config.root_dir)
-        end,
         on_attach = on_attach,
         capabilities = capabilities,
         filetypes = { "python" },
