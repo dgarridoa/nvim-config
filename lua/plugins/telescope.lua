@@ -52,7 +52,10 @@ return {
       },
       {
         "<leader>ws",
-        "<cm>Telescope lsp_workspace_symbols query=",
+        function()
+          local telescope = require "telescope.builtin"
+          telescope.lsp_workspace_symbols { query = vim.fn.input "Query: " }
+        end,
         desc = "Display query workspace symbols",
       },
       {
