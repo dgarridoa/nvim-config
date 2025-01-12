@@ -187,37 +187,31 @@ return {
 
     local get_path = function(package)
       local path = lspconfig.util.path
-      local workspace = vim.lsp.buf.list_workspace_folders()[1]
 
       -- Use activated virtualenv
       if vim.env.VIRTUAL_ENV then
         return path.join(vim.env.VIRTUAL_ENV, "bin", package)
       end
 
-      -- Find and use local virtualenv
-      local match = vim.fn.glob(path.join(workspace, ".venv"))
-      if match ~= "" then
-        return path.join(match, "bin", package)
-      end
+      local status, workspace = pcall(vim.lsp.buf.list_workspace_folders()[1])
+      if status then
+        -- Find and use local virtualenv
+        local match = vim.fn.glob(path.join(workspace, ".venv"))
+        if match ~= "" then
+          return path.join(match, "bin", package)
+        end
 
-      -- Find and use virtualenv via poetry in workspace directory
-      match = vim.fn.glob(path.join(workspace, "poetry.lock"))
-      if match ~= "" then
-        local venv = vim.fn.trim(vim.fn.system "poetry env info -p")
-        return path.join(venv, "bin", package)
+        -- Find and use virtualenv via poetry in workspace directory
+        match = vim.fn.glob(path.join(workspace, "poetry.lock"))
+        if match ~= "" then
+          local venv = vim.fn.trim(vim.fn.system "poetry env info -p")
+          return path.join(venv, "bin", package)
+        end
       end
 
       -- Fallback to system package
       local system_path = vim.fn.exepath(package)
       return system_path
-    end
-
-    local get_python_path = function()
-      local path = get_path "python"
-      if path == "" then
-        path = get_path "python3"
-      end
-      return path
     end
 
     ---@param package string
