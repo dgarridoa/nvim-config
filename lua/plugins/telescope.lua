@@ -130,13 +130,15 @@ return {
       -- :marks to see all marks
       -- :delmarks! to delete all marks
       { "<leader>ma", "<cmd>Telescope marks<cr>", desc = "Marks" },
+      -- project
+      { "<leader>p", "<cmd>Telescope projects<cr>", desc = "Pick project" },
       -- tmux
       { "<leader>tp", "<cmd>Telescope tmux pane_contents<cr>", desc = "Tmux pane content" },
       { "<leader>tw", "<cmd>Telescope tmux windows<cr>", desc = "Tmux windows" },
       { "<leader>ts", "<cmd>Telescope tmux sessions<cr>", desc = "Tmux sessions" },
     },
     opts = {
-      extensions_list = { "fzf", "file_browser", "tmux" },
+      extensions_list = { "fzf", "file_browser", "tmux", "projects"},
       extensions = {
         fzf = {
           fuzzy = true,
