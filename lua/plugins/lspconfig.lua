@@ -214,6 +214,14 @@ return {
       return system_path
     end
 
+    local cmd_from_path = function(package)
+      local path = get_path(package)
+      if path ~= "" then
+        return path
+      end
+      return package
+    end
+
     ---@param package string
     ---@return boolean
     local is_package_in_pyproject = function(package)
@@ -237,13 +245,13 @@ return {
       lspconfig.pyright.setup {
         on_attach = on_attach,
         capabilities = capabilities,
-        cmd = { get_path "pyright-langserver", "--stdio" },
+        cmd = { cmd_from_path "pyright-langserver", "--stdio" },
         filetypes = { "python" },
       }
     end
     if is_ruff then
       lspconfig.ruff.setup {
-        cmd = { get_path "ruff", "server" },
+        cmd = { cmd_from_path "ruff", "server" },
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
           client.server_capabilities.hoverProvider = false
