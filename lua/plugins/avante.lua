@@ -21,7 +21,40 @@ return {
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    "zbirenbaum/copilot.lua", -- for providers='copilot'
+    {
+      "zbirenbaum/copilot.lua",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        local cmd_path = vim.fn.stdpath "data" .. "/mason/bin/copilot-language-server"
+        require("copilot").setup {
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+          server_opts_overrides = {
+            trace = "verbose",
+            cmd = { cmd_path, "--stdio" },
+            settings = {
+              advanced = {
+                listCount = 10,
+                inlineSuggestCount = true,
+              },
+            },
+          },
+          filetypes = {
+            yaml = true,
+            markdown = true,
+            help = false,
+            gitcommit = true,
+            gitrebase = true,
+            hgcommit = false,
+            svn = false,
+            cvs = false,
+            ["."] = false,
+            ["*"] = true,
+          },
+        }
+      end,
+    },
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
