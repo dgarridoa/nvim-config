@@ -12,6 +12,9 @@ return {
       temperature = 0,
       max_tokens = 4096,
     },
+    behavior = {
+      enable_cursor_planning_mode = true,
+    },
   },
   build = "make", -- run :AvanteBuild if failed to load avante_repo_map
   dependencies = {
