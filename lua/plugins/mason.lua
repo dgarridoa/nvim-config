@@ -3,6 +3,7 @@ return {
   opts = {
     ensure_installed = {
       "black",
+      "copilot-language-server",
       "debugpy",
       "flake8",
       "gopls",
