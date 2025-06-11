@@ -6,14 +6,15 @@ return {
   opts = {
     provider = "copilot",
     auto_suggestion_provider = "copilot",
-    copilot = {
-      model = "o3-mini",
-      timeout = 30000,
-      temperature = 0,
-      max_tokens = 4096,
-    },
-    behavior = {
-      enable_cursor_planning_mode = true,
+    providers = {
+      copilot = {
+        model = "o4-mini",
+        extra_request_body = {
+          timeout = 30000,
+          temperature = 0.75,
+          max_tokens = 16384,
+        },
+      },
     },
   },
   build = "make", -- run :AvanteBuild if failed to load avante_repo_map
