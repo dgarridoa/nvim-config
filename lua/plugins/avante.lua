@@ -35,6 +35,10 @@ return {
       },
       docker_extra_args = "",
     },
+    web_search_engine = {
+      provider = "tavily",
+      proxy = nil,
+    },
   },
   build = "make", -- run :AvanteBuild if failed to load avante_repo_map
   dependencies = {
