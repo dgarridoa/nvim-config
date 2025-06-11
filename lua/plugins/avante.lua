@@ -16,6 +16,25 @@ return {
         },
       },
     },
+    rag_service = {
+      enabled = true,
+      host_mount = os.getenv "HOME", -- Host mount path for the rag service (Docker will mount this path)
+      runner = "docker",
+      llm = {
+        provider = "ollama",
+        endpoint = "http://localhost:11434",
+        api_key = "",
+        model = "deepseek-r1:14b",
+      },
+      embed = {
+        provider = "ollama",
+        endpoint = "http://localhost:11434",
+        api_key = "",
+        model = "bge-large",
+        extra = nil,
+      },
+      docker_extra_args = "",
+    },
   },
   build = "make", -- run :AvanteBuild if failed to load avante_repo_map
   dependencies = {
