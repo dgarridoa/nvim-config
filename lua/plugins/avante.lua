@@ -6,6 +6,7 @@ return {
   opts = {
     provider = "copilot",
     auto_suggestion_provider = "copilot",
+    cursor_applying_provider = "copilot",
     providers = {
       copilot = {
         model = "o4-mini",
