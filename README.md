@@ -30,7 +30,6 @@ This configuration uses [lazy](https://github.com/folke/lazy.nvim) as plugin man
 - `avante`: ai driven code suggestion.
 - `bufferline`: bufffer line (with tabpage integration).
 - `cmp`: Code completion.
-- `comment`: Commenting.
 - `dap`: Debuger Adapter Protocol.
 - `dashboard`: Pretty dashboard on start screen.
 - `devicons`: Web icons.
