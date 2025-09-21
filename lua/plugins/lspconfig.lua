@@ -281,7 +281,6 @@ return {
         },
       },
     }
-    vim.g.pylsp = true
 
     vim.lsp.config["terraformls"] = {
       on_attach = on_attach,
@@ -314,6 +313,7 @@ return {
     end
     if not is_pyright and not is_ruff then
       table.insert(servers_to_enable, "pylsp")
+      vim.g.pylsp = true
     end
 
     vim.lsp.enable(servers_to_enable)
