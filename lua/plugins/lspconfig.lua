@@ -73,20 +73,6 @@ return {
       { desc = "Floating diagnostic" },
     },
     {
-      "[d",
-      function()
-        vim.diagnostic.goto_prev { float = { border = "rounded" } }
-      end,
-      { desc = "Goto prev" },
-    },
-    {
-      "]d",
-      function()
-        vim.diagnostic.goto_next { float = { border = "rounded" } }
-      end,
-      { desc = "Goto next" },
-    },
-    {
       "<leader>wa",
       function()
         vim.lsp.buf.add_workspace_folder()
@@ -116,8 +102,6 @@ return {
     },
   },
   config = function()
-    local lspconfig = require "lspconfig"
-
     local on_attach = function(client, bufnr)
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false
@@ -147,7 +131,7 @@ return {
       },
     }
 
-    lspconfig.lua_ls.setup {
+    vim.lsp.config["lua_ls"] = {
       on_attach = on_attach,
       capabilities = capabilities,
       filetypes = { "lua" },
@@ -186,26 +170,24 @@ return {
     }
 
     local get_path = function(package)
-      local path = lspconfig.util.path
-
       -- Use activated virtualenv
       if vim.env.VIRTUAL_ENV then
-        return path.join(vim.env.VIRTUAL_ENV, "bin", package)
+        return vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", package)
       end
 
       local status, workspace = pcall(vim.lsp.buf.list_workspace_folders()[1])
       if status then
         -- Find and use local virtualenv
-        local match = vim.fn.glob(path.join(workspace, ".venv"))
+        local match = vim.fn.glob(vim.fs.joinpath(workspace, ".venv"))
         if match ~= "" then
-          return path.join(match, "bin", package)
+          return vim.fs.joinpath(match, "bin", package)
         end
 
         -- Find and use virtualenv via poetry in workspace directory
-        match = vim.fn.glob(path.join(workspace, "poetry.lock"))
+        match = vim.fn.glob(vim.fs.joinpath(workspace, "poetry.lock"))
         if match ~= "" then
           local venv = vim.fn.trim(vim.fn.system "poetry env info -p")
-          return path.join(venv, "bin", package)
+          return vim.fs.joinpath(venv, "bin", package)
         end
       end
 
@@ -225,8 +207,7 @@ return {
     ---@param package string
     ---@return boolean
     local is_package_in_pyproject = function(package)
-      local path = lspconfig.util.path
-      local match = vim.fn.glob(path.join(vim.fn.getcwd(), "pyproject.toml"))
+      local match = vim.fn.glob(vim.fs.joinpath(vim.fn.getcwd(), "pyproject.toml"))
       if match ~= "" then
         local f = assert(io.open(match, "r"))
         local content = f:read "*all"
@@ -238,74 +219,81 @@ return {
       return false
     end
 
-    local is_pyright = is_package_in_pyproject "pyright"
-    local is_ruff = is_package_in_pyproject "ruff"
-
-    if is_pyright then
-      lspconfig.pyright.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        cmd = { cmd_from_path "pyright-langserver", "--stdio" },
-        filetypes = { "python" },
-      }
-    end
-    if is_ruff then
-      lspconfig.ruff.setup {
-        cmd = { cmd_from_path "ruff", "server" },
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-          client.server_capabilities.hoverProvider = false
-          local bufopts = { noremap = true, silent = true, buffer = bufnr }
-          vim.keymap.set("n", "<leader>fm", function()
-            local buf_path = vim.api.nvim_buf_get_name(bufnr)
-            vim.api.nvim_command("!" .. get_path "ruff" .. " format " .. buf_path)
-            vim.api.nvim_command("!" .. get_path "ruff" .. " check " .. buf_path .. " --fix")
-          end, bufopts)
-        end,
-        filetypes = { "python" },
-      }
-    end
-    if not is_pyright and not is_ruff then
-      lspconfig.pylsp.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        filetypes = { "python" },
-        cmd = { "pylsp" },
-        settings = {
-          pylsp = {
-            configurationSources = { "flake8", "black", "isort", "mypy" },
-            plugins = {
-              pycodestyle = { enabled = false },
-              flake8 = {
-                enabled = true,
-                ignore = { "E203", "W503" },
-                max_line_length = 79,
-              },
-              isort = { enabled = true, profile = "black", multi_line_output = 3, line_length = 79 },
-              black = { enabled = true, line_length = 79 },
+    vim.lsp.config["pyright"] = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      cmd = { cmd_from_path "pyright-langserver", "--stdio" },
+      filetypes = { "python" },
+    }
+    vim.lsp.config["ruff"] = {
+      cmd = { cmd_from_path "ruff", "server" },
+      on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        client.server_capabilities.hoverProvider = false
+        local bufopts = { noremap = true, silent = true, buffer = bufnr }
+        vim.keymap.set("n", "<leader>fm", function()
+          local buf_path = vim.api.nvim_buf_get_name(bufnr)
+          vim.api.nvim_command("!" .. get_path "ruff" .. " format " .. buf_path)
+          vim.api.nvim_command("!" .. get_path "ruff" .. " check " .. buf_path .. " --fix")
+        end, bufopts)
+      end,
+      filetypes = { "python" },
+    }
+    vim.lsp.config["pylsp"] = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      filetypes = { "python" },
+      cmd = { "pylsp" },
+      settings = {
+        pylsp = {
+          configurationSources = { "flake8", "black", "isort", "mypy" },
+          plugins = {
+            pycodestyle = { enabled = false },
+            flake8 = {
+              enabled = true,
+              ignore = { "E203", "W503" },
+              max_line_length = 79,
             },
+            isort = { enabled = true, profile = "black", multi_line_output = 3, line_length = 79 },
+            black = { enabled = true, line_length = 79 },
           },
         },
-      }
-      vim.g.pylsp = true
-    end
+      },
+    }
+    vim.g.pylsp = true
 
-    lspconfig.terraformls.setup {
+    vim.lsp.config["terraformls"] = {
       on_attach = on_attach,
       capabilities = capabilities,
       filetypes = { "terraform" },
     }
 
-    lspconfig.gopls.setup {
+    vim.lsp.config["gopls"] = {
       on_attach = on_attach,
       capabilities = capabilities,
       filetypes = { "go" },
     }
 
-    lspconfig.sqls.setup {
+    vim.lsp.config["sqls"] = {
       on_attach = function(client, bufnr)
         require("sqls").on_attach(client, bufnr)
       end,
     }
+
+    local is_pyright = is_package_in_pyproject "pyright"
+    local is_ruff = is_package_in_pyproject "ruff"
+
+    local servers_to_enable = { "lua_ls", "terraformls", "gopls", "sqls" }
+    if is_pyright then
+      table.insert(servers_to_enable, "pyright")
+    end
+    if is_ruff then
+      table.insert(servers_to_enable, "ruff")
+    end
+    if not is_pyright and not is_ruff then
+      table.insert(servers_to_enable, "pylsp")
+    end
+
+    vim.lsp.enable(servers_to_enable)
   end,
 }
