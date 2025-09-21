@@ -102,6 +102,22 @@ return {
     },
   },
   config = function()
+    -- Override vim.lsp.util.make_position_params to provide default position_encoding
+    local original_make_position_params = vim.lsp.util.make_position_params
+    vim.lsp.util.make_position_params = function(win, position_encoding)
+      -- If position_encoding is not provided, default to utf-8
+      if position_encoding == nil then
+        -- Try to get encoding from the first available client
+        local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+        if #clients > 0 then
+          position_encoding = clients[1].offset_encoding or "utf-8"
+        else
+          position_encoding = "utf-8"
+        end
+      end
+      return original_make_position_params(win, position_encoding)
+    end
+
     local on_attach = function(client, bufnr)
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false
@@ -112,6 +128,11 @@ return {
     end
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+    -- Set consistent offset encoding to prevent warnings - use utf-8 for better compatibility
+    capabilities.offsetEncoding = { "utf-8" }
+    capabilities.general = capabilities.general or {}
+    capabilities.general.positionEncodings = { "utf-8" }
 
     capabilities.textDocument.completion.completionItem = {
       documentationFormat = { "markdown", "plaintext" },
@@ -278,6 +299,7 @@ return {
       on_attach = function(client, bufnr)
         require("sqls").on_attach(client, bufnr)
       end,
+      capabilities = capabilities,
     }
 
     local is_pyright = is_package_in_pyproject "pyright"
