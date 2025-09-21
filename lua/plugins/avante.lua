@@ -9,7 +9,7 @@ return {
     cursor_applying_provider = "copilot",
     providers = {
       copilot = {
-        model = "o4-mini",
+        model = "o3-mini",
         extra_request_body = {
           timeout = 30000,
           temperature = 0.75,
@@ -18,7 +18,7 @@ return {
       },
     },
     rag_service = {
-      enabled = true,
+      enabled = false,
       host_mount = os.getenv "HOME", -- Host mount path for the rag service (Docker will mount this path)
       runner = "docker",
       llm = {
