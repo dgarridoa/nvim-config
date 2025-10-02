@@ -8,7 +8,7 @@ return {
   },
   lazy = false,
   keys = {
-    { ",v", "<cmd>VenvSelect<cr>" },
+    { "<leader>vs", "<cmd>VenvSelect<cr>" },
   },
   opts = {
     -- Your settings go here
