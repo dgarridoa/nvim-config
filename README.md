@@ -27,9 +27,9 @@ docker exec -it nvim bash
 
 This configuration uses [lazy](https://github.com/folke/lazy.nvim) as plugin manager. In the `lua/plugins` directory, you will find the plugin modules. A brief explanation of its contents is provided below:
 
-- `avante`: ai driven code suggestion.
+- `sidekick`: Integrate with any ai cli.
 - `bufferline`: bufffer line (with tabpage integration).
-- `cmp`: Code completion.
+- `blinkcmp`: Code completion.
 - `dap`: Debuger Adapter Protocol.
 - `dashboard`: Pretty dashboard on start screen.
 - `devicons`: Web icons.
@@ -37,7 +37,6 @@ This configuration uses [lazy](https://github.com/folke/lazy.nvim) as plugin man
 - `github_theme`: Github color schemes.
 - `gitsigns`: Git decorations.
 - `indent_blankline`: Adds visual identation guides.
-- `lspconfig`: To configure LSP servers.
 - `lualine`: Status line.
 - `markdown_preview`: Preview Markdown in a browser.
 - `mason`: LSP package manager.
@@ -56,3 +55,7 @@ This configuration uses [lazy](https://github.com/folke/lazy.nvim) as plugin man
 - `undotree`: Undo or redo changes, similar to git but with automatic commits.
 - `venv`: A python virtual environment selector.
 - `whichkey`: Displays a popup with possible key bindings of the command you started typing.
+
+# LSP
+
+In the `lsp` directory language servers are configured and they are enabled in the `init.lua` file. You may need to install specific language servers using the `mason` plugin to ensure proper functionality.
