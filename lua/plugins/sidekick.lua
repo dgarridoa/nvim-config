@@ -1,7 +1,7 @@
 return {
   "folke/sidekick.nvim",
   opts = {
-    -- add any options here
+    nes = { enabled = false },
     cli = {
       mux = {
         backend = "tmux",
@@ -90,6 +90,16 @@ return {
         require("sidekick.cli").toggle { name = "opencode", focus = true }
       end,
       desc = "Sidekick Toggle Opencode",
+    },
+    {
+      "<leader>aw",
+      function()
+        require("sidekick.cli").send {
+          msg = "Can you improve clarity and readability? {this}",
+        }
+      end,
+      mode = { "x" },
+      desc = "Improve Readability of Selection",
     },
   },
 }
