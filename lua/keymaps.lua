@@ -40,7 +40,7 @@ local general_keymaps = {
     ["K"] = { ":m '<-2<CR>gv=gv", "Move selected text one line up" },
   },
   t = {
-    ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
+    -- ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
     ["<Esc>"] = { "<C-\\><C-n>", "Exit terminal mode" },
   },
 }
