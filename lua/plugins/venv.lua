@@ -11,6 +11,8 @@ return {
     { "<leader>vs", "<cmd>VenvSelect<cr>" },
   },
   opts = {
-    -- Your settings go here
+    options = {
+      require_lsp_activation = false,
+    },
   },
 }

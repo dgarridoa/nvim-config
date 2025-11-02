@@ -17,18 +17,5 @@ vim.lsp.util.make_position_params = function(win, position_encoding)
   return original_make_position_params(win, position_encoding)
 end
 
-local servers_to_enable = { "copilot-language-server", "lua_ls", "terraformls", "gopls", "sqls" }
-local is_pyright = require("utils").is_package_in_pyproject "pyright"
-local is_ruff = require("utils").is_package_in_pyproject "ruff"
-if is_pyright then
-  table.insert(servers_to_enable, "pyright")
-end
-if is_ruff then
-  table.insert(servers_to_enable, "ruff")
-end
-if not is_pyright and not is_ruff then
-  table.insert(servers_to_enable, "pylsp")
-  vim.g.pylsp = true
-end
-
+local servers_to_enable = { "copilot-language-server", "lua_ls", "terraformls", "gopls", "sqls", "pyright", "ruff" }
 vim.lsp.enable(servers_to_enable)

@@ -2,16 +2,11 @@ return {
   "williamboman/mason.nvim",
   opts = {
     ensure_installed = {
-      "black",
       "copilot-language-server",
       "debugpy",
-      "flake8",
       "gopls",
-      "isort",
       "lua-language-server",
-      "mypy",
       "pyright",
-      "python-lsp-server",
       "ruff",
       "sqls",
       "stylua",

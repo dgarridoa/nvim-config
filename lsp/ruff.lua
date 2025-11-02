@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-  cmd = { require("utils").cmd_from_path "ruff", "server" },
+  cmd = { "ruff", "server" },
   on_attach = function(client, bufnr)
     client.server_capabilities.hoverProvider = false
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
