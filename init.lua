@@ -17,5 +17,5 @@ vim.lsp.util.make_position_params = function(win, position_encoding)
   return original_make_position_params(win, position_encoding)
 end
 
-local servers_to_enable = { "copilot-language-server", "lua_ls", "terraformls", "gopls", "sqls", "pyright", "ruff" }
+local servers_to_enable = { "copilot-language-server", "lua_ls", "terraformls", "gopls", "pyright", "ruff" }
 vim.lsp.enable(servers_to_enable)

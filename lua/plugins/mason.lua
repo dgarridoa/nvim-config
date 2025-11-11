@@ -9,6 +9,7 @@ return {
       "pyright",
       "ruff",
       "sqls",
+      "sqlfluff",
       "stylua",
       "terraform-ls",
       "texlab",
