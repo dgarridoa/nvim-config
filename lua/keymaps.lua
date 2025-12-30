@@ -39,10 +39,6 @@ local general_keymaps = {
     ["J"] = { ":m '>+1<CR>gv=gv", "Move selected text one line down" },
     ["K"] = { ":m '<-2<CR>gv=gv", "Move selected text one line up" },
   },
-  t = {
-    -- ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
-    ["<Esc>"] = { "<C-\\><C-n>", "Exit terminal mode" },
-  },
 }
 
 local lsp_keymaps = {
